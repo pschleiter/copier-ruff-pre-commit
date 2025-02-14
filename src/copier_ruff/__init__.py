@@ -14,6 +14,13 @@ warnings.filterwarnings('ignore', category=DirtyLocalWarning)
 
 @click.command
 @click.option(
+    '-p',
+    '--sub-path',
+    type=str,
+    default='',
+    help='Sub path within the generated template to run `ruff` in.',
+)
+@click.option(
     '-r',
     '--vcs-ref',
     type=str,
@@ -56,6 +63,7 @@ warnings.filterwarnings('ignore', category=DirtyLocalWarning)
     help='Skip template tasks execution',
 )
 def hook(
+    sub_path: str,
     vcs_ref: str,
     data: tuple[str],
     data_file: Path | None,
@@ -85,7 +93,7 @@ def hook(
                 worker.run_copy()
                 try:
                     subprocess.run(
-                        ['ruff', 'check', temp_dir_name],
+                        ['ruff', 'check', str(Path(temp_dir_name).joinpath(sub_path))],
                         capture_output=True,
                         check=True,
                     )

@@ -1,6 +1,5 @@
 from operator import itemgetter
 from pathlib import Path
-import re
 import subprocess
 import tempfile
 import warnings
@@ -99,11 +98,12 @@ def hook(
                     )
                 except subprocess.CalledProcessError as err:
                     click.echo(
-                        re.sub(
-                            rf'^{temp_dir_name.replace("\\", "\\\\")}',
-                            '',
-                            err.stdout.decode('utf8'),
-                        )
+                        b'\n'.join([
+                            line[len(temp_dir_name) :]
+                            if line.startswith(temp_dir_name.encode('utf8'))
+                            else line
+                            for line in err.stdout.split(b'\n')
+                        ])
                     )
         except ValueError as err:
             if len(err.args) > 0:

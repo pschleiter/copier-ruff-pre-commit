@@ -16,7 +16,7 @@ repos:
   rev: v0.9.6
   hooks:
     # Run the linter.
-    id: copier-ruff
+    - id: copier-ruff
 ```
 
 If your Copier template requires you can provide them directly in the `.pre-commit-config.yaml`:
@@ -28,11 +28,11 @@ repos:
   rev: v0.9.6
   hooks:
     # Run the linter.
-    id: copier-ruff
-    args: [
+    - id: copier-ruff
+      args: [
         "--data", "VARIABLE1=VALUE1"
         "--data", "VARIABLE2=VALUE2"
-    ]
+      ]
 ```
 
 This data could also be loaded from a yaml file:
@@ -44,10 +44,10 @@ repos:
   rev: v0.9.6
   hooks:
     # Run the linter.
-    id: copier-ruff
-    args: [
+    - id: copier-ruff
+      args: [
         "--data-file", "./data.yaml"
-    ]
+      ]
 ```
 
 Additional options are:

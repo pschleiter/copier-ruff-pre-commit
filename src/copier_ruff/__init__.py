@@ -91,8 +91,15 @@ def hook(
                     )
                 except subprocess.CalledProcessError as err:
                     click.echo(
-                        re.sub(rf'^{temp_dir_name}', '', err.stdout.decode('utf8'))
+                        re.sub(
+                            rf'^{temp_dir_name.replace("\\", "\\\\")}',
+                            '',
+                            err.stdout.decode('utf8'),
+                        )
                     )
         except ValueError as err:
-            msg = f'Missing configuration for copier template: {err.args[0]}'
+            if len(err.args) > 0:
+                msg = f'Missing configuration for copier template: {err.args[0]}'
+            else:
+                msg = 'Wrong configuration for copier template'
             raise click.ClickException(msg) from err

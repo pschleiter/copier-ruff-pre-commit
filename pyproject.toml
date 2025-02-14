@@ -14,9 +14,9 @@ dependencies = [
     "click",
     "copier",
     "pyyaml",
-    "ruff~=0.9.1",
+    "ruff~=0.9.2",
 ]
-version = "0.9.1"
+version = "0.9.2"
 
 [project.scripts]
 copier-ruff = "copier_ruff:hook"
@@ -67,5 +67,5 @@ post-install-commands = ["pre-commit install"]
 
 # Lint and formatting environment
 [tool.hatch.envs.hatch-static-analysis]
-dependencies = ["ruff~=0.9.1"]
+dependencies = ["ruff~=0.9.2"]
 config-path = "none"

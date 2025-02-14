@@ -1,0 +1,6 @@
+-   id: copier-ruff
+    name: Ruff on Copier Template
+    description: Create a copy of a `copier` template and runs `ruff` on it
+    entry: copier-ruff
+    language: python
+    pass_filenames: false

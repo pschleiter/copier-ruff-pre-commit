@@ -105,6 +105,8 @@ def hook(
                             for line in err.stdout.split(b'\n')
                         ])
                     )
+                    raise click.ClickException('Ruff failed') from err
+
         except ValueError as err:
             if len(err.args) > 0:
                 msg = f'Missing configuration for copier template: {err.args[0]}'

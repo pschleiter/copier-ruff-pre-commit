@@ -1,7 +1,6 @@
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
-
+requires = ["uv_build>=0.8.13,<0.9.0"]
+build-backend = "uv_build"
 [project]
 name = "copier-ruff-pre-commit"
 authors = [
@@ -9,7 +8,7 @@ authors = [
 ]
 description = "A pre-commit hook for running Ruff on Copier templates."
 readme="README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 dependencies = [
     "click",
     "copier",
@@ -20,6 +19,10 @@ version = "0.9.6"
 
 [project.scripts]
 copier-ruff = "copier_ruff:hook"
+
+## uv-build - Build Backend ##
+[tool.uv.build-backend]
+module-name = "copier_ruff"
 
 ## ruff - Formatting ##
 [tool.ruff]
@@ -46,26 +49,3 @@ inline-quotes = "single"
 
 [tool.ruff.lint.flake8-tidy-imports]
 ban-relative-imports = "all"
-
-## Hatch - Version ##
-[tool.hatch.build]
-packages = ["src/copier_ruff"]
-
-[tool.hatch.build.targets.sdist]
-exclude = [
-    "/.editorconfig",
-    "/.pre-commit-hooks.yaml",
-    "/.pre-commit-config.yaml",
-]
-
-## Hatch - Envs ##
-# Default environment with production dependencies
-[tool.hatch.envs.default]
-installer = "uv"
-python = "3.12"
-post-install-commands = ["pre-commit install"]
-
-# Lint and formatting environment
-[tool.hatch.envs.hatch-static-analysis]
-dependencies = ["ruff~=0.9.6"]
-config-path = "none"

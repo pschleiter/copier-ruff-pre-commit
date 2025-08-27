@@ -58,7 +58,7 @@ wheels = [
 
 [[package]]
 name = "copier-ruff-pre-commit"
-version = "0.9.8"
+version = "0.9.9"
 source = { editable = "." }
 dependencies = [
     { name = "click" },
@@ -72,7 +72,7 @@ requires-dist = [
     { name = "click" },
     { name = "copier" },
     { name = "pyyaml" },
-    { name = "ruff", specifier = "~=0.9.7" },
+    { name = "ruff", specifier = "~=0.9.8" },
 ]
 
 [[package]]

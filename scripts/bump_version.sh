@@ -31,7 +31,4 @@ sed -i "s/ruff~=${old_version}/ruff~=${new_version}/g" pyproject.toml
 sed -i "s/rev: 'v${old_version}'/rev: 'v${new_version}'/g" .pre-commit-config.yaml
 
 pre-commit install
-git add .
-echo "Ruff v${new_version}"
-git commit -m "Ruff v${new_version}"
-git tag "v${new_version}"
+git add . && git commit --quiet -m "Ruff v${new_version}" && git tag "v${new_version}"

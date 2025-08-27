@@ -13,9 +13,9 @@ dependencies = [
     "click",
     "copier",
     "pyyaml",
-    "ruff~=0.11.1",
+    "ruff~=0.11.2",
 ]
-version = "0.11.1"
+version = "0.11.2"
 
 [project.scripts]
 copier-ruff = "copier_ruff:hook"
